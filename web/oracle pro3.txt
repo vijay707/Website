@@ -1,0 +1,40 @@
+Write a PL/SQL to update the rate field by 20% more than the current rate in inventory table which has the following fields: Prono, ProName and Rate. After updating the table a new field (Alter) called for Number of item and place for values for the new field without using PL/SQL block.
+
+
+CREATE TABLE:
+create table inventory(prono number primary key,proname varchar(20),rate number);
+
+
+INSERT MINIMUM SIX ROWS:
+insert into inventory values(&prono,'&proname',&rate);
+
+
+select * from inventory;
+
+
+PL/SQL:
+set serveroutput on
+
+begin
+update inventory set rate=rate+(rate*20/100);
+commit;
+end;
+
+
+select * from inventory;
+
+
+ADDING NEW FIELD IN TABLE:
+
+alter table inventory add no_of_items number;
+
+
+desc inventory;
+
+
+update inventory set no_of_items=case prono
+when 1001 then 10
+when 1002 then 8
+when 1003 then 6
+when 1004 then 4
+end;

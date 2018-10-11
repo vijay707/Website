@@ -1,0 +1,43 @@
+Write a PL/SQL to split the student table into two tables based on result (One table for “Pass” and another for “Fail”). Use cursor for handling records of student table. Assume necessary fields and create a student details table.
+
+
+CREATE A STUDENT TABLE:
+create table student8(rollno number,name varchar2(20),totalmarks number,result varchar2(4));
+
+
+INSERT RECORDS TO STUDENT TABLE:
+insert into student8 values(&rollno,'&name',&total,'&result');
+
+
+SELECT ALL ROWS FROM STUDENT TABLE:
+select * from student8;
+
+
+SPLIT THE STUDENT TABLE INTO 2 TABLES BASED ON RESULT:
+declare
+query1 varchar2(100):='create table student8_pass as(select * from student8 where result=''pass'')';
+query2 varchar2(100):='create table student8_fail as(select * from student8 where result=''fail'')';
+begin
+execute immediate query1;
+execute immediate query2;
+end;
+/
+PL/SQL procedure successfully completed.
+
+
+
+USE CURSOR FOR HANDLING RECORDS
+declare
+cursor cpass is select * from student8_pass;
+cursor cfail is select * from student8_fail;
+begin
+dbms_output.put_line('LIST OF PASSED STUDENTS');
+for passrec in cpass loop
+dbms_output.put_line(passrec.name);
+end loop;
+dbms_output.put_line('LIST OF FAILED STUDENTS');
+for failrec in cfail loop
+dbms_output.put_line(failrec.name);
+end loop;
+end;
+/

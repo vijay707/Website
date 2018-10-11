@@ -1,0 +1,28 @@
+Private Sub Command1_Click()
+CommonDialog1.ShowOpen
+a = CommonDialog1.FileName
+RichTextBox1.loadfile (a)
+RichTextBox1.loadfile (CommonDialog1.FileName)
+End Sub
+
+Private Sub Command2_Click()
+CommonDialog1.Flags = cdlCFEffects
+CommonDialog1.ShowFont
+RichTextBox1.SelBold = CommonDialog1.FontBold
+RichTextBox1.SelItalic = CommonDialog1.FontItalic
+RichTextBox1.SelFontSize = CommonDialog1.FontSize
+RichTextBox1.SelFontName = CommonDialog1.FontName
+RichTextBox1.SelUnderline = CommonDialog1.FontUnderline
+RichTextBox1.SelStrikeThru = CommonDialog1.FontStrikethru
+RichTextBox1.SelColor = CommonDialog1.Color
+End Sub
+
+Private Sub Command3_Click()
+CommonDialog1.ShowSave
+CommonDialog1.DefaultExt = ".text"
+RichTextBox1.savefile (CommonDialog1.FileName)
+End Sub
+
+Private Sub Command4_Click()
+Unload Me
+End Sub

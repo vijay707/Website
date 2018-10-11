@@ -1,0 +1,47 @@
+Create a database trigger to implement on master and transaction tables which are based on inventory management system for checking data validity. Assume the necessary fields for both tables.
+
+
+CREATE INVENTORY MASTER TABLE:-
+create table inventory_master1(orderid number primary key,custid number,orderdate date,amount number);
+
+
+Table created
+
+CREATE INVENTORY TRANSACTION TABLE:-
+
+create table inventory_trans1(orderid number references inventory_master1,productid number,productname varchar2(30),quantity number,unitprice number);
+
+Table created
+
+CREATE TRIGGER ON INVENTORY MASTER:-
+
+set serveroutput on
+
+create or replace trigger 
+check1 before insert on inventory_master1 for each row
+declare
+begin
+if(:new.amount<0)then
+raise_application_error(-20040,'invalid amount');
+end if;
+end;
+
+Trigger created.
+
+INSERT INTO INVENTORY TABLES:-
+insert into inventory_master1 values(&orderid,&custid,'&orderdate',&amount);
+
+CREATE TRIGGER ON INVENTORY TRANSACTION:-
+create or replace trigger
+check2 before insert on inventory_trans1 for each row
+declare
+begin
+if(:new.quantity<0)then
+raise_application_error(-20040,'invalid quantity');
+end if;
+end;
+
+Trigger created.
+
+INSERT INTO INVENTORY TRANSACTION:-
+insert into inventory_trans1 values (&orderid,&productid,'&productname',&quantity,&unitprice);

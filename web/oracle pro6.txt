@@ -1,0 +1,26 @@
+Write a PL/SQL to raise the following Exception in Bank Account Management table when deposit amount is zero.
+
+
+CREATE BANK ACCOUNT MANAGEMENT TABLE:-
+create table bank_acc(accno number primary key,name varchar(20),deposit number);
+
+CREATE AN EXCEPTION FOR BANK ACCOUNT MANAGEMENT TABLE:-
+set serveroutput on
+
+declare
+vaccno number:= &vaccno;
+vname varchar2(20):= '&vname';
+vdeposit number:= &vdeposit;
+zerodeposit exception;
+begin
+if vdeposit<=0 then
+raise zerodeposit;
+else
+insert into bank_acc(accno,name,deposit) values (vaccno,vname,vdeposit);
+dbms_output.put_line('Record is successfully inserted');
+end if;
+exception
+when zerodeposit then
+dbms_output.put_line('Invalid deposit amount');
+end;
+/

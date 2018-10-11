@@ -1,0 +1,19 @@
+Private Sub Command1_Click()
+Text2.Text = dectobin(Val(Text1.Text))
+Text3.Text = Oct$(Text1.Text)
+Text4.Text = Hex$(Text1.Text)
+End Sub
+Public Function dectobin(decivalue As Long, Optional noofbits As Integer = 8) As String
+Dim i As Integer
+Do While decivalue > (2 ^ noofbits) - 1
+noofbits = noofbits + 8
+Loop
+dectobin = vbNullString
+For i = 0 To (noofbits - 1)
+dectobin = (Str((decivalue And 2 ^ i) / 2 ^ i) & dectobin)
+Next i
+End Function
+
+Private Sub Command2_Click()
+End
+End Sub

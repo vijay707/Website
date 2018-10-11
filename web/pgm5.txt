@@ -1,0 +1,34 @@
+Private Sub mnuaddform_Click()
+Form1.Show
+Form2.Show
+Form3.Show
+End Sub
+
+Private Sub mnublue_Click()
+MDIForm1.ActiveForm.BackColor = vbBlue
+End Sub
+
+Private Sub mnucascade_Click()
+MDIForm1.Arrange avcascade
+End Sub
+Private Sub mnuexit_Click()
+Unload Form1
+Unload Form2
+Unload Form3
+End Sub
+Private Sub mnugreen_Click()
+MDIForm1.ActiveForm.BackColor = vbGreen
+End Sub
+Private Sub mnuhorizontal_Click()
+MDIForm1.Arrange vbHorizontal
+End Sub
+
+Private Sub mnured_Click()
+MDIForm1.ActiveForm.BackColor = vbRed
+End Sub
+
+Private Sub mnuvertucal_Click()
+MDIForm1.Arrange vbVertical
+End Sub
+
+
